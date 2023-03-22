@@ -8,7 +8,7 @@ import Register from './components/Register';
 
 function App() {
   return (
-    <div>
+    <div id="App">
       <BrowserRouter>
         <Header/>
 

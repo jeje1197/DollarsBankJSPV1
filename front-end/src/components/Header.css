@@ -1,0 +1,21 @@
+#header {
+    width: 100%;
+    background-color: #162033;
+    font-size: large;
+    color: white;
+    display: flex;
+    padding: 1rem;
+}
+
+#header-msg {
+    justify-self: flex-start
+}
+
+#header ul {
+    justify-self: flex-end;
+}
+
+#header ul li {
+    display: inline;
+}
+

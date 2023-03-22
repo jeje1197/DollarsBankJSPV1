@@ -1,9 +1,9 @@
-import React from 'react'
+import './Footer.css'
 
 const Footer = () => {
   return (
     <div id="footer">
-      Footer
+      Copyright @ DollarsBank 2023
     </div>
   )
 }
