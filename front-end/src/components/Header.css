@@ -3,19 +3,18 @@
     background-color: #162033;
     font-size: large;
     color: white;
+    padding: 1.2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
     display: flex;
-    padding: 1rem;
-}
-
-#header-msg {
-    justify-self: flex-start
 }
 
 #header ul {
-    justify-self: flex-end;
+    margin: 0;
+    margin-left: auto;
+    list-style-type: none;
 }
 
 #header ul li {
     display: inline;
 }
-
