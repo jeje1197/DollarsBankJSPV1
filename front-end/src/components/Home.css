@@ -11,4 +11,5 @@
     flex-direction: column;
     background-color: gray;
     border-radius: 13px;
+    padding-top: 0.3rem;
 }
