@@ -17,4 +17,10 @@
 
 #header ul li {
     display: inline;
+    margin-right: 0.8rem;
+    /* margin-left: 5px; */
+}
+
+#header ul li i{
+    margin-right: 0.5rem;
 }

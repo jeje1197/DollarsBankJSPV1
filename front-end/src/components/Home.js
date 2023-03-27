@@ -7,7 +7,11 @@ const Home = () => {
     <div id="home">
       <div>
         <h2>Dollars Bank</h2>
-        <div>Buttons Here</div>
+        <div id="button-container">
+          <i className="fas fa-envelope-square" style={{fontSize:"24px"}}></i>
+          <button type="button" class="btn btn-danger">Login</button>
+          <button type="button" class="btn btn-danger">Register</button>
+        </div>
       </div>
       <div>
         <img src={rr} alt="Money Meme"></img>
