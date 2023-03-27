@@ -33,8 +33,6 @@ const LoginModal = () => {
                 aria-label="Default" 
                 aria-describedby="inputGroup-sizing-default"
                 placeholder="Username"
-                pattern=".+"
-                required
               />
             </div>
 
@@ -52,8 +50,6 @@ const LoginModal = () => {
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
                 placeholder="Password"
-                pattern=".+"
-                required
               />
             </div>
 

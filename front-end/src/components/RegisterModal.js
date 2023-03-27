@@ -6,11 +6,11 @@ const RegisterModal = () => {
 
   const handleRegistration = () => {
     BankApi.register({
-      name: document.getElementById("register-name"),
-      email: document.getElementById("register-email"),
-      phone: document.getElementById("register-phone"),
-      username: document.getElementById("register-username"),
-      password: document.getElementById("register-password")
+      name: document.getElementById("register-name").value,
+      email: document.getElementById("register-email").value,
+      phone: document.getElementById("register-phone").value,
+      username: document.getElementById("register-username").value,
+      password: document.getElementById("register-password").value
     })
   }
 
@@ -22,6 +22,7 @@ const RegisterModal = () => {
             <h5 className="modal-title" id="exampleModalLongTitle">Register</h5>
           </div>
           <div className="modal-body">
+
             {/* Name Input Field */}
             <div className="input-group mb-3">
               <div className="input-group-prepend">
@@ -48,7 +49,7 @@ const RegisterModal = () => {
               </div>
               <input
                 id="register-email"
-                type="text" 
+                type="email" 
                 className="form-control"
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
@@ -65,7 +66,7 @@ const RegisterModal = () => {
               </div>
               <input
                 id="register-phone"
-                type="text" 
+                type="number" 
                 className="form-control"
                 aria-label="Default"
                 aria-describedby="inputGroup-sizing-default"
