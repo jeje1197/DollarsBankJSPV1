@@ -24,7 +24,7 @@ const LoginModal = () => {
             <div className="input-group mb-3">
               <div className="input-group-prepend">
                 <span className="input-group-text">
-                <i className="fas fa-envelope-square" style={{fontSize: "24px", color:"white"}}></i>
+                <i className="fas fa-lock" style={{fontSize: "18px"}}></i>
                 </span>
               </div>
               <input 

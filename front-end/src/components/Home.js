@@ -24,7 +24,15 @@ const Home = () => {
           backgroundColor: "blue"
         }}>
           <p>Pioneers of Banking Worldwide!</p>
-          <p>Rated by our global customers</p>
+          <p>
+            Rated &nbsp;
+            <span className="fa fa-star checked my-rating" style={{fontSize:"18px", color: "yellow"}}></span>
+            <span className="fa fa-star checked my-rating" style={{fontSize:"18px", color: "yellow"}}></span>
+            <span className="fa fa-star checked my-rating" style={{fontSize:"18px", color: "yellow"}}></span>
+            <span className="fa fa-star checked my-rating" style={{fontSize:"18px", color: "yellow"}}></span>
+            <span className="fa fa-star checked my-rating" style={{fontSize:"18px", color: "yellow"}}></span>
+            &nbsp; by our global customers
+            </p>
           <p>Enjoy banking with us!</p>
         </div>
         <hr/>
