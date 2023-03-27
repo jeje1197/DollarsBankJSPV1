@@ -2,6 +2,7 @@ import React from 'react'
 import rr from '../images/rickroll.png'
 import './Home.css'
 import LoginModal from './LoginModal'
+import RegisterModal from './RegisterModal'
 
 const Home = () => {
   return (
@@ -14,8 +15,8 @@ const Home = () => {
               marginLeft: "8px",
               marginBottom: "2px"
             }}></i>
-          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#loginModal">Login</button>
-          <button type="button" class="btn btn-danger">Register</button>
+          <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#loginModal">Login</button>
+          <button type="button" className="btn btn-danger" data-toggle="modal" data-target="#registerModal">Register</button>
         </div>
       </div>
       <div id="testimonial">
@@ -39,6 +40,9 @@ const Home = () => {
       </div>
       {
         <LoginModal />
+      }
+      {
+        <RegisterModal />
       }
     </div>
   )
