@@ -1,7 +1,6 @@
 package com.dollarsbank.web;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,27 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dollarsbank.controller.AccountController;
-import com.dollarsbank.utils.JSONHelper;
 
-@WebServlet("/register")
-public class RegistrationServlet extends HttpServlet {
+@WebServlet("/deposit")
+public class DepositServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public RegistrationServlet() {
+    public DepositServlet() {
         super();
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Map<String, String> map = JSONHelper.toMap(request.getReader());
-		System.out.println(map);
-		AccountController.createAccount(
-				map.get("name"),
-				map.get("email"),
-				map.get("phone"),
-				map.get("username"),
-				map.get("password")
-		);
-
+		int id = Integer.parseInt(request.getParameter("id"));
+		double amount = Double.parseDouble(request.getParameter("amount"));
+		
+		AccountController.deposit(id, amount);
 		response.getWriter().append("Success");
 	}
+
 }

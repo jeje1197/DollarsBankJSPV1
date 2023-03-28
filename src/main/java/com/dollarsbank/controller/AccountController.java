@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.ServletException;
+
+import com.dollarsbank.exceptions.DollarsBankException;
 import com.dollarsbank.model.Account;
 
 public class AccountController {
@@ -16,31 +19,50 @@ public class AccountController {
 		return true;
 	}
 	
-	public static int login(String username, String password) {
+	public static int login(String username, String password) throws DollarsBankException {
 		Optional<Account> userAccount = accounts.stream().filter((account) -> { 
-			return username == account.getUsername() && password == account.getPassword();
+			return username.equals(account.getUsername()) && password.equals(account.getPassword());
 		}).findFirst();
-
-		if (userAccount.isEmpty()) return -1;
+		
+		if (userAccount.isEmpty()) {
+			throw new DollarsBankException("Could not find account.");
+		}
 		return userAccount.get().getId();
 	}
 	
-	private static Account findAccountWithId(int id) {
+	private static Account findAccountWithId(int id) throws DollarsBankException {
 		Optional<Account> userAccount = accounts.stream().filter((account) -> id == account.getId())
 				.findFirst();
-		return userAccount.isPresent() ? userAccount.get() : null;
+		if (userAccount.isPresent()) {
+			return userAccount.get();
+		}
+		throw new DollarsBankException("Could not find account.");
 	}
 	
-	public static double getBalance(int id) {
+	public static double getBalance(int id) throws DollarsBankException {
 		Account userAccount = findAccountWithId(id);
 		return userAccount.getBalance();
 	}
 	
-	public static boolean deposit() {
-		return false;
+	public static boolean deposit(int id, double amount) throws DollarsBankException {
+		if (amount <= 0) return false;
+		
+		Account userAccount = findAccountWithId(id);
+		userAccount.setBalance(amount + userAccount.getBalance());
+		return true;
 	}
 	
-	public static boolean withdraw() {
-		return false;
+	public static boolean withdraw(int id, double amount) throws DollarsBankException {
+		if (amount <= 0) return false;
+
+		Account userAccount = findAccountWithId(id);
+		userAccount.setBalance(userAccount.getBalance() - amount);
+		return true;
 	}
+	
+	// Funds Transfer
+	
+	// Recent transaction
+	
+	// 
 }

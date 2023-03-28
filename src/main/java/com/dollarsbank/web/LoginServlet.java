@@ -1,7 +1,7 @@
 package com.dollarsbank.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,28 +10,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dollarsbank.controller.AccountController;
+import com.dollarsbank.utils.JSONHelper;
 
-/**
- * Servlet implementation class LoginServlet
- */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	AccountController controller = new AccountController();
        
     public LoginServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Map<String, String> map = JSONHelper.toMap(request.getReader());
+		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
+		String username = map.get("username");
+		String password = map.get("password");
 		
-		int accountId = controller.login(username, password);
-		response.getWriter().print(accountId);
+		System.out.println(map);
+		
+		int accountId = AccountController.login(username, password);
+		response.getWriter().append("" + accountId);
 	}
 
 }
