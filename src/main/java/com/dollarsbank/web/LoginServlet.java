@@ -32,6 +32,9 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(map);
 		
 		int accountId = AccountController.login(username, password);
+		
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		response.setContentType("application/json");
 		response.getWriter().append("" + accountId);
 	}
 

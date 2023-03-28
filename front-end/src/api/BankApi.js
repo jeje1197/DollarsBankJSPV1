@@ -1,28 +1,48 @@
 
 const BankApi = {
-    URL: "https://localhost:8080/DollarsBankJSPV1",
+    URL: "http://localhost:8080/DollarsBankJSPV1",
+
     register: async (registrationData) => {
-        const success = await fetch(BankApi.URL + "/register" + new URLSearchParams(registrationData), {
+        const URI = BankApi.URL + "/register"
+        const response = await fetch(URI, {
             method: "POST",
+            mode: "cors",
             body: JSON.stringify(registrationData),
-            headers: {
-                "Content-Type": "application/json"
-            },
         })
         .then(response => response.json())
         .catch(error => {
             console.error(error)
         })
 
-        return success
+        return response
     },
 
     login: async (loginData) => {
-        console.log("Login API:", loginData)
+        const URI = BankApi.URL + "/login"
+        const response = await fetch(URI, {
+            mode: "cors",
+            body: JSON.stringify(loginData)
+        })
+        .then(response => response.json())
+        .catch(error => {
+            console.error(error)
+        })
+
+        return response
     },
 
     getBalance: async(accountId) => {
+        const URI = BankApi.URL + "/balance?id=1"
+        const response = await fetch(URI, {
+            mode: "cors"
+        })
+        .then(response => response.json())
+        .catch(error => {
+            console.error(error)
+        })
 
+        console.log(response)
+        return response
     }
 }
 

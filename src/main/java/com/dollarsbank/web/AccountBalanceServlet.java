@@ -22,6 +22,7 @@ public class AccountBalanceServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		double balance = AccountController.getBalance(id);
+		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.getWriter().append(String.valueOf(balance));
 	}
 

@@ -31,6 +31,11 @@ public class RegistrationServlet extends HttpServlet {
 				map.get("password")
 		);
 
-		response.getWriter().append("Success");
+		map.remove("username");
+		map.remove("password");
+		
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		response.setContentType("application/json");
+		response.getWriter().append(JSONHelper.toJSON(map));
 	}
 }
