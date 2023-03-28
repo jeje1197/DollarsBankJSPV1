@@ -4,7 +4,11 @@ import './Home.css'
 import LoginModal from './LoginModal'
 import RegisterModal from './RegisterModal'
 
-const Home = () => {
+const Home = ({userData}) => {
+  if (userData.loggedIn) {
+    window.location.assign("/account")
+  }
+
   return (
     <div id="home">
       <div id="title-and-buttons-container">
