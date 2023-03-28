@@ -1,6 +1,7 @@
 package com.dollarsbank.web;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -20,22 +21,24 @@ public class LoginServlet extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> map = JSONHelper.toMap(request.getReader());
-		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		
-		String username = map.get("username");
-		String password = map.get("password");
-		
 		System.out.println(map);
 		
-		int accountId = AccountController.login(username, password);
+		int accountId = AccountController.login(
+				map.get("username"), 
+				map.get("password")
+		);
 		
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.setContentType("application/json");
-		response.getWriter().append("" + accountId);
+		
+		Map<String, String> responseMap = new HashMap<>();
+		map.put("id", String.valueOf(accountId));
+		System.out.println(responseMap);
+		
+		response.getWriter().append(JSONHelper.toJSON(responseMap));
+		
 	}
 
 }

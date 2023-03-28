@@ -20,6 +20,7 @@ const BankApi = {
     login: async (loginData) => {
         const URI = BankApi.URL + "/login"
         const response = await fetch(URI, {
+            method: "POST",
             mode: "cors",
             body: JSON.stringify(loginData)
         })
@@ -32,7 +33,7 @@ const BankApi = {
     },
 
     getBalance: async(accountId) => {
-        const URI = BankApi.URL + "/balance?id=1"
+        const URI = BankApi.URL + "/balance?id=" + accountId
         const response = await fetch(URI, {
             mode: "cors"
         })
@@ -41,7 +42,6 @@ const BankApi = {
             console.error(error)
         })
 
-        console.log(response)
         return response
     }
 }

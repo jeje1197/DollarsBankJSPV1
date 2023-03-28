@@ -2,9 +2,13 @@ package com.dollarsbank.utils;
 
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 public class JSONHelper {
@@ -19,8 +23,19 @@ public class JSONHelper {
 	}
 	
 	public static String toJSON(Map<String, String> map) {
-		Type gsonType = new TypeToken<Map>(){}.getType();
-		String json = gson.toJson(map, gsonType);
-		return json;
+		StringBuilder sb = new StringBuilder();
+		sb.append('{');
+		
+		Iterator<Entry<String, String>> iter = map.entrySet().iterator();
+		while (iter.hasNext()) {
+			Entry<String, String> entry = iter.next();
+			sb.append('"' + entry.getKey() + '"' + ':' + '"' + entry.getValue() + '"');
+			if (iter.hasNext()) {
+				sb.append(',');
+			}	
+		}
+		
+		sb.append('}');
+		return sb.toString();
 	}
 }
