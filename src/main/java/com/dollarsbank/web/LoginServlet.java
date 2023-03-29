@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> map = JSONHelper.toMap(request.getReader());
-//		System.out.println(map);
+		System.out.println("Login: " + map);
 
 		int accountId = AccountController.login(
 				map.get("username"), 

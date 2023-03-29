@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import BankApi from '../api/BankApi'
 import './AccountHome.css'
+import CustomerInfoModal from './CustomerInfoModal'
 
 const AccountHome = ({ userData }) => {
   const [accountDetails, setAccountDetails] = useState({
@@ -48,7 +49,7 @@ const AccountHome = ({ userData }) => {
             <button type="button" className="btn btn-info">Deposit</button>
             <button type="button" className="btn btn-info">Withdraw</button>
             <button type="button" className="btn btn-info">Transfer</button>
-            <button type="button" className="btn btn-info">View Customer Info</button>
+            <button type="button" className="btn btn-info" data-toggle="modal" data-target="#customerInfoModal">View Customer Info</button>
             <button type="button" className="btn btn-info" onClick={handleLogout}>Logout</button>
           </div>
         </div>
@@ -70,7 +71,7 @@ const AccountHome = ({ userData }) => {
             </ul>
           </div>
         </div>
-
+        <CustomerInfoModal name={accountDetails.name} email={accountDetails.email} phone={accountDetails.phone}/>
     </div>
   )
 }

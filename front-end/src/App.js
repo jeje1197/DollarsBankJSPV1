@@ -15,19 +15,26 @@ function App() {
 
   return (
     <div id="App">
+      <div id="App-container"> 
       <BrowserRouter>
+      
         <Header/>
-        <Alert/>
+          {/* <div id="App-background">
+            <div id="App-container"> */}
+              <Alert/>
 
-        <Routes>
-          <Route exact path="/" element={<Home userData={userData} />}/>
-          <Route path="/account" element={<AccountHome userData={userData} />}/>
-        </Routes>
-        
-        {/* {showSpinner ? <Spinner/> : null} */}
-
+              <Routes>
+                <Route exact path="/" element={<Home userData={userData} />}/>
+                <Route path="/account" element={<AccountHome userData={userData} />}/>
+              </Routes>
+    
+              {/* {showSpinner ? <Spinner/> : null} */}
+            {/* </div>
+          </div> */}
         <Footer/>
+        
       </BrowserRouter>
+      </div>
     </div>
   );
 }

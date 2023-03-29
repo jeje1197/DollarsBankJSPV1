@@ -10,10 +10,12 @@ const LoginModal = ({ userData }) => {
   const handleLogin = (event) => {
     event.preventDefault()
 
-    BankApi.login({
+    const loginData = {
       username: document.getElementById("login-username").value,
       password: document.getElementById("login-password").value
-    })
+    }
+
+    BankApi.login(loginData)
     .then(data => {
       userData.id = data.id
       if (data) {
@@ -21,7 +23,8 @@ const LoginModal = ({ userData }) => {
       }
     })
     .catch(error => {
-      console.error(error)
+      // console.error(error)
+      alert("Failed to login.")
     })
   }
 

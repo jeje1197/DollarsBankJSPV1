@@ -4,19 +4,43 @@ import './RegisterModal.css'
 
 const RegisterModal = () => {
 
+  const sanitizeInputs = (registrationData) => {
+    if (!registrationData.name.match("^[A-Z][a-z]*(\\s[A-Z][a-z]*)*$")) {
+      alert("Registration: Please enter a valid name.")
+    } else if (!registrationData.email.match("^.+@.+[.].+$")) {
+      alert("Registration: Please enter a valid email address.")
+    } else if (!registrationData.phone.match("^[0-9]{7,14}$")) {
+      alert("Registration: Please enter a valid phone number.")
+    } else if (!registrationData.username.match("^[A-Za-z0-9]{6,20}$")) {
+      alert("Registration: Please enter a username of length 6-20 characters with no special characters.")
+    } else if (registrationData.password.match("^[-,;]{6,20}$")) {
+      alert("Registration: Please enter a password of length between 6-20 characters.")
+    } else {
+      return true
+    }
+    return false
+  }
+
   const handleRegistration = () => {
-    BankApi.register({
+    const registrationData = {
       name: document.getElementById("register-name").value,
       email: document.getElementById("register-email").value,
       phone: document.getElementById("register-phone").value,
       username: document.getElementById("register-username").value,
       password: document.getElementById("register-password").value
-    })
+    }
+
+    if (!sanitizeInputs(registrationData)) {
+      return
+    }
+
+    BankApi.register(registrationData)
     .then(data => {
-      console.log("Successfully registered account!" + data)
+      alert("Successfully registered account!")
     })
     .catch(error => {
-      console.error(error)
+      // console.error(error)
+      alert("Failed to register account!")
     })
   }
 

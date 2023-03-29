@@ -10,6 +10,10 @@
     align-self: center;
 }
 
+#title-and-buttons-container h1 {
+    color: white;
+}
+
 #button-container {
     display: flex;
     flex-direction: column;
