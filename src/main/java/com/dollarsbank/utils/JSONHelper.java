@@ -1,23 +1,20 @@
 package com.dollarsbank.utils;
 
 import java.io.Reader;
-import java.lang.reflect.Type;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.reflect.TypeToken;
 
 public class JSONHelper {
 	private static Gson gson = new Gson();
 	
+	@SuppressWarnings("unchecked")
 	public static Map<String, String> toMap(Reader reader) {
 		return gson.fromJson(reader, Map.class);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static Map<String, String> toMap(String JSONString) {
 		return gson.fromJson(JSONString, Map.class);
 	}
@@ -39,5 +36,9 @@ public class JSONHelper {
 //		sb.append('}');
 //		System.out.println(sb);
 //		return sb.toString();
+	}
+	
+	public static String toJSON(List<String> stringList) {
+		return gson.toJson(stringList);
 	}
 }

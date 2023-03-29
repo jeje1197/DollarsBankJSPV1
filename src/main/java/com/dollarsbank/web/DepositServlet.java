@@ -30,7 +30,6 @@ public class DepositServlet extends HttpServlet {
 		Map<String, String> responseMap = new HashMap<>();
 		responseMap.put("id", String.valueOf(id));
 		responseMap.put("balance", String.valueOf(AccountController.getBalance(id)));
-		JSONHelper.toJSON(responseMap);
 
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.setContentType("application/json");

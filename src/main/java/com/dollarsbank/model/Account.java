@@ -1,6 +1,5 @@
 package com.dollarsbank.model;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -85,7 +84,8 @@ public class Account {
 	}
 	
 	public void addTransaction(String transaction) {
-		this.transactions.add("[acc-" + id + "-"+ transactions.size() + "]" + transaction + " - " + new Date());
+		this.transactions.add("[acc-" + id + "-"+ (transactions.size() + 1) + "] " + transaction + " - " + new Date() +
+				" Current Balance: $" + String.format("%.2f", balance));
 	}
 	
 	public List<String> getTransactions() {

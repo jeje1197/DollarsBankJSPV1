@@ -13,24 +13,25 @@ import javax.servlet.http.HttpServletResponse;
 import com.dollarsbank.controller.AccountController;
 import com.dollarsbank.utils.JSONHelper;
 
-@WebServlet("/withdraw")
-public class WithdrawServlet extends HttpServlet {
+@WebServlet("/transfer")
+public class TransferServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public WithdrawServlet() {
+    public TransferServlet() {
         super();
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
+		int userAccountId = Integer.parseInt(request.getParameter("userAccountId"));
+		int otherAccountId = Integer.parseInt(request.getParameter("otherAccountId"));
 		double amount = Double.parseDouble(request.getParameter("amount"));
 		
-		AccountController.withdraw(id, amount);
+		AccountController.transferFunds(userAccountId, otherAccountId, amount);
 		
 		Map<String, String> responseMap = new HashMap<>();
-		responseMap.put("id", String.valueOf(id));
-		responseMap.put("balance", String.valueOf(AccountController.getBalance(id)));
-
+		responseMap.put("id", String.valueOf(userAccountId));
+		responseMap.put("balance", String.valueOf(AccountController.getBalance(userAccountId)));
+		
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.setContentType("application/json");
 		response.getWriter().append(JSONHelper.toJSON(responseMap));
