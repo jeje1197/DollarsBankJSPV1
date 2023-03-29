@@ -9,8 +9,13 @@ const DepositModal = ({ accountDetails }) => {
         event.preventDefault()
 
         const depositData = {
-            id: accountDetails.id,
-            amount: document.getElementById("deposit-amount").value
+          id: accountDetails.id,
+          amount: Number(document.getElementById("deposit-amount").value)
+        }
+
+        if (depositData.amount <= 0) {
+          alert(`Invalid deposit amount. Number must be greater than $0.`)
+          return
         }
 
         BankApi.deposit(depositData)
@@ -21,7 +26,7 @@ const DepositModal = ({ accountDetails }) => {
         })
         .catch(error => {
             // console.error(error)
-            alert(`Invalid deposit amount. Number must be greater than $0.`)
+            alert(`Could not make deposit.`)
         })
     }
 

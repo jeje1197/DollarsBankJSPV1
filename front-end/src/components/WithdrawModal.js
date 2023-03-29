@@ -10,7 +10,14 @@ const WithdrawModal = ({ accountDetails }) => {
 
         const withdrawData = {
             id: accountDetails.id,
-            amount: document.getElementById("withdraw-amount").value
+            amount: Number(document.getElementById("withdraw-amount").value)
+        }
+
+        console.log(withdrawData)
+
+        if (withdrawData.amount <= 0 || (withdrawData.amount > accountDetails.balance)) {
+          alert(`Invalid withdraw amount. Number must be greater than $0 and less than or equal to ${accountDetails.balance}`)
+          return
         }
 
         BankApi.withdraw(withdrawData)
@@ -21,7 +28,7 @@ const WithdrawModal = ({ accountDetails }) => {
         })
         .catch(error => {
             // console.error(error)
-            alert(`Invalid withdraw amount. Number must be greater than $0 and less than ${accountDetails.balance}`)
+            alert(`Could not make transfer.`)
         })
     }
 

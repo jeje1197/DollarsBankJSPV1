@@ -32,7 +32,7 @@ public class RecentTransactionsServlet extends HttpServlet {
 		
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		response.setContentType("application/json");
-		response.getWriter().append(JSONHelper.toJSON(responseMap));
+		response.getWriter().append(JSONHelper.toJSON(recentTransactions));
 	}
 
 }

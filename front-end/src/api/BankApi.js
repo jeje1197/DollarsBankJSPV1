@@ -73,7 +73,7 @@ const BankApi = {
 
         const balanceData = await BankApi.getBalance(userData)
         const transactionData = await BankApi.getTransactions(userData)
-        console.log(transactionData)
+        // console.log(transactionData)
         
         return {
             id: userData.id,
@@ -81,7 +81,7 @@ const BankApi = {
             email: response.email,
             phone: response.phone,
             balance: balanceData.balance,
-            // transactions: transactionData
+            transactions: transactionData
         }
     },
 
