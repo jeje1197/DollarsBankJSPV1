@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import BankApi from '../api/BankApi'
 import './AccountHome.css'
 import CustomerInfoModal from './CustomerInfoModal'
+import DepositModal from './DepositModal'
+import TransferModal from './TransferModal'
+import WithdrawModal from './WithdrawModal'
 
 const AccountHome = ({ userData }) => {
   const [accountDetails, setAccountDetails] = useState({
@@ -46,10 +49,18 @@ const AccountHome = ({ userData }) => {
         <div id="account-options">
           <h3>What would you like to do?</h3>
           <div>
-            <button type="button" className="btn btn-info">Deposit</button>
-            <button type="button" className="btn btn-info">Withdraw</button>
-            <button type="button" className="btn btn-info">Transfer</button>
-            <button type="button" className="btn btn-info" data-toggle="modal" data-target="#customerInfoModal">View Customer Info</button>
+            <button type="button" className="btn btn-info" data-toggle="modal" data-target="#depositModal">
+              Deposit
+            </button>
+            <button type="button" className="btn btn-info" data-toggle="modal" data-target="#withdrawModal">
+              Withdraw
+            </button>
+            <button type="button" className="btn btn-info" data-toggle="modal" data-target="#transferModal">
+              Transfer
+            </button>
+            <button type="button" className="btn btn-info" data-toggle="modal" data-target="#customerInfoModal">
+              View Customer Info
+            </button>
             <button type="button" className="btn btn-info" onClick={handleLogout}>Logout</button>
           </div>
         </div>
@@ -72,6 +83,9 @@ const AccountHome = ({ userData }) => {
           </div>
         </div>
         <CustomerInfoModal name={accountDetails.name} email={accountDetails.email} phone={accountDetails.phone}/>
+        <DepositModal accountDetails={accountDetails} />
+        <WithdrawModal accountDetails={accountDetails} />
+        <TransferModal accountDetails={accountDetails} />
     </div>
   )
 }

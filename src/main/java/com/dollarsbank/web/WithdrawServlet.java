@@ -24,6 +24,8 @@ public class WithdrawServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		double amount = Double.parseDouble(request.getParameter("amount"));
+
+		System.out.println("Withdraw id=" + id + ", amount=" + amount);
 		
 		AccountController.withdraw(id, amount);
 		

@@ -24,6 +24,7 @@ public class DepositServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		double amount = Double.parseDouble(request.getParameter("amount"));
+		System.out.println("Deposit id=" + id + ", amount=" + amount);
 		
 		AccountController.deposit(id, amount);
 		

@@ -17,22 +17,18 @@ function App() {
     <div id="App">
       <div id="App-container"> 
       <BrowserRouter>
-      
-        <Header/>
-          {/* <div id="App-background">
-            <div id="App-container"> */}
-              <Alert/>
 
-              <Routes>
-                <Route exact path="/" element={<Home userData={userData} />}/>
-                <Route path="/account" element={<AccountHome userData={userData} />}/>
-              </Routes>
-    
-              {/* {showSpinner ? <Spinner/> : null} */}
-            {/* </div>
-          </div> */}
+        <Header/>
+          <Alert/>
+
+          <Routes>
+            <Route exact path="/" element={<Home userData={userData} />}/>
+            <Route path="/account" element={<AccountHome userData={userData} />}/>
+          </Routes>
+
+          {/* {showSpinner ? <Spinner/> : null} */}
         <Footer/>
-        
+
       </BrowserRouter>
       </div>
     </div>
