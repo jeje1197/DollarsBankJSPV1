@@ -23,19 +23,21 @@ public class JSONHelper {
 	}
 	
 	public static String toJSON(Map<String, String> map) {
-		StringBuilder sb = new StringBuilder();
-		sb.append('{');
-		
-		Iterator<Entry<String, String>> iter = map.entrySet().iterator();
-		while (iter.hasNext()) {
-			Entry<String, String> entry = iter.next();
-			sb.append('"' + entry.getKey() + '"' + ':' + '"' + entry.getValue() + '"');
-			if (iter.hasNext()) {
-				sb.append(',');
-			}	
-		}
-		
-		sb.append('}');
-		return sb.toString();
+		return gson.toJson(map);
+//		StringBuilder sb = new StringBuilder();
+//		sb.append('{');
+//		
+//		Iterator<Entry<String, String>> iter = map.entrySet().iterator();
+//		while (iter.hasNext()) {
+//			Entry<String, String> entry = iter.next();
+//			sb.append('"' + entry.getKey() + '"' + ':' + '"' + entry.getValue() + '"');
+//			if (iter.hasNext()) {
+//				sb.append(',');
+//			}	
+//		}
+//		
+//		sb.append('}');
+//		System.out.println(sb);
+//		return sb.toString();
 	}
 }

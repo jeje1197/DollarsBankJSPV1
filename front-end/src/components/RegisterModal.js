@@ -12,6 +12,12 @@ const RegisterModal = () => {
       username: document.getElementById("register-username").value,
       password: document.getElementById("register-password").value
     })
+    .then(data => {
+      console.log("Successfully registered account!" + data)
+    })
+    .catch(error => {
+      console.error(error)
+    })
   }
 
   return (

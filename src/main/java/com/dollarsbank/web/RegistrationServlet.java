@@ -22,7 +22,7 @@ public class RegistrationServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Map<String, String> map = JSONHelper.toMap(request.getReader());
-		System.out.println(map);
+//		System.out.println(map);
 		AccountController.createAccount(
 				map.get("name"),
 				map.get("email"),

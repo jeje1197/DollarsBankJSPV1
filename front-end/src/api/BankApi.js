@@ -35,6 +35,7 @@ const BankApi = {
     getBalance: async(accountId) => {
         const URI = BankApi.URL + "/balance?id=" + accountId
         const response = await fetch(URI, {
+            method: "GET",
             mode: "cors"
         })
         .then(response => response.json())

@@ -1,15 +1,31 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import BankApi from '../api/BankApi'
 
-const AccountHome = (userData) => {
-    useEffect(() => {
-      
-    }, [])
+const AccountHome = ({ userData }) => {
+  const [accountDetails, setAccountDetails] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    balance: null,
+  })
+
+  useEffect(() => {
+    BankApi.getBalance({
+      id: userData.id
+    })
+    .then(data => {
+      accountDetails.balance = data.balance
+      console.log("Balance: " + data)
+    })
+    .catch(error => {
+      console.error(error)
+    })
+  }, [userData, accountDetails])
 
   return (
     <div>
-        <h1>Welcome, {userData.username}!</h1>
-        <p>Account Balance: {userData.account}</p>
-        
+        <h1>Welcome, {accountDetails.name}!</h1>
+        <p>Account Balance: {accountDetails.balance}</p>
     </div>
   )
 }
