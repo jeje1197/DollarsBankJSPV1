@@ -4,12 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 import './LoginModal.css'
 
-const LoginModal = ({ userData, setShowSpinner }) => {
+const LoginModal = ({ userData }) => {
   const navigate = useNavigate()
 
   const handleLogin = (event) => {
     event.preventDefault()
-    setShowSpinner(true)
 
     BankApi.login({
       username: document.getElementById("login-username").value,
@@ -17,15 +16,12 @@ const LoginModal = ({ userData, setShowSpinner }) => {
     })
     .then(data => {
       userData.id = data.id
-      console.log("Successfully logged in!", data)
       if (data) {
         navigate("/account")
       }
     })
     .catch(error => {
       console.error(error)
-    }).finally(() => {
-      setShowSpinner(false)
     })
   }
 
@@ -78,10 +74,12 @@ const LoginModal = ({ userData, setShowSpinner }) => {
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancel</button>
-              <button type="submit" 
-                className="btn btn-primary" 
+              <button 
+                type="submit" 
+                className="btn btn-primary"
                 onClick={(event) => handleLogin(event)}
-                data-toggle="modal" data-target="#loadingModal">
+                data-toggle="modal"
+                data-target="#loginModal">
                 Sign In
               </button>
             </div>

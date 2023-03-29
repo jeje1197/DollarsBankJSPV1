@@ -5,7 +5,7 @@ import AccountHome from './components/AccountHome';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './components/Home';
-import Spinner from './components/Spinner';
+// import Spinner from './components/Spinner';
 
 function App() {
   const [userData, setUserData] = useState({
@@ -13,7 +13,7 @@ function App() {
     loggedIn: false
   })
 
-  const [showSpinner, setShowSpinner] = useState(false)
+  // const [showSpinner, setShowSpinner] = useState(false)
 
   useEffect(() => {
     if (userData.loggedIn) {
@@ -27,11 +27,11 @@ function App() {
         <Header/>
 
         <Routes>
-          <Route exact path="/" element={<Home userData={userData} setShowSpinner={setShowSpinner}/>}/>
-          <Route path="/account" element={<AccountHome userData={userData} setShowSpinner={setShowSpinner}/>}/>
+          <Route exact path="/" element={<Home userData={userData} />}/>
+          <Route path="/account" element={<AccountHome userData={userData} />}/>
         </Routes>
         
-        {showSpinner ? <Spinner/> : null}
+        {/* {showSpinner ? <Spinner/> : null} */}
 
         <Footer/>
       </BrowserRouter>
