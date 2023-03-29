@@ -1,5 +1,10 @@
 package com.dollarsbank.model;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class Account {
 	private int id;
 	
@@ -11,6 +16,7 @@ public class Account {
 	String password;
 
 	private double balance;
+	private List<String> transactions = new ArrayList<>();
 
 	public Account(int id, String name, String email, String phone, String username, String password, double balance) {
 		this.id = id;
@@ -76,6 +82,14 @@ public class Account {
 
 	public void setBalance(double balance) {
 		this.balance = balance;
+	}
+	
+	public void addTransaction(String transaction) {
+		this.transactions.add("[acc-" + id + "-"+ transactions.size() + "]" + transaction + " - " + new Date());
+	}
+	
+	public List<String> getTransactions() {
+		return transactions;
 	}
 	
 }
