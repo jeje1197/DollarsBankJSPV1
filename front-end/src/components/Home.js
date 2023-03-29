@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import rr from '../images/rickroll.png'
 import './Home.css'
 import LoginModal from './LoginModal'
 import RegisterModal from './RegisterModal'
 
 const Home = ({userData, setShowSpinner}) => {
-  if (userData.loggedIn) {
-    window.location.assign("/account")
-  }
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (userData.id !== -1) {
+      navigate("/account")
+    }
+  }, [userData, navigate])
 
   return (
     <div id="home">

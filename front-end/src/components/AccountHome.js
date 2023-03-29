@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import BankApi from '../api/BankApi'
 import './AccountHome.css'
 
@@ -12,7 +13,18 @@ const AccountHome = ({ userData }) => {
     transactions: ["Transaction 1", "Transaction 2", "Transaction 3", "Transaction 4", "Transaction 5"]
   })
 
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    userData.id = -1
+    navigate("/")
+  }
+
   useEffect(() => {
+    if (userData.id === -1) {
+      navigate("/")
+      return
+    }
+
     BankApi.getAccountInformation({
       id: userData.id
     })
@@ -23,7 +35,7 @@ const AccountHome = ({ userData }) => {
       console.error(error)
     })
     
-  }, [userData])
+  }, [userData, navigate])
 
   return (
     <div id="account-home">
@@ -33,11 +45,11 @@ const AccountHome = ({ userData }) => {
         <div id="account-options">
           <h3>What would you like to do?</h3>
           <div>
-            <button type="button" class="btn btn-info">Deposit</button>
-            <button type="button" class="btn btn-info">Withdraw</button>
-            <button type="button" class="btn btn-info">Transfer</button>
-            <button type="button" class="btn btn-info">View Customer Info</button>
-            <button type="button" class="btn btn-info">Logout</button>
+            <button type="button" className="btn btn-info">Deposit</button>
+            <button type="button" className="btn btn-info">Withdraw</button>
+            <button type="button" className="btn btn-info">Transfer</button>
+            <button type="button" className="btn btn-info">View Customer Info</button>
+            <button type="button" className="btn btn-info" onClick={handleLogout}>Logout</button>
           </div>
         </div>
 
@@ -50,9 +62,10 @@ const AccountHome = ({ userData }) => {
             {/* <p className="card-text">With supporting text below as a natural lead-in to additional content.</p> */}
             <ul className="list-group list-group-flush">
               {
-                accountDetails.transactions.map((transaction, key) => {
+                accountDetails.transactions ? accountDetails.transactions.map((transaction, key) => {
                   return (<li key={key} className="list-group-item">{ transaction }</li>)
-                })
+                }) 
+                : <li className="list-group-item"> No Transactions </li>
               }
             </ul>
           </div>
